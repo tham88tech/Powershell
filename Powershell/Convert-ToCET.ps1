@@ -20,7 +20,7 @@ Function Convert-ToCET
         [string]
         $EndTime,
         [Parameter(Mandatory=$True,HelpMessage=
-        "Enter from which timeZone, it needs to be converted to CET (Minutes).")]
+        "From which timeZone, it needs to be converted to CET (Minutes).")]
         [int]
         $TimeZoneOffcet
     )
