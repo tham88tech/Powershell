@@ -1,7 +1,7 @@
 <#
 Prepared by Thameem J
 Function can be used to convet the date and time to CET time zone based on the given time zone.
-Example : Convert-ToCET -StartDate "25/11/2019" -EndDate "25/11/2019" -StartTime "2:00" -EndTime "6:00" -TimeZoneOffcet 300
+Example : Convert-ToCET -StartDate "24/11/2019" -EndDate "25/11/2019" -StartTime "22:00" -EndTime "2:00" -TimeZoneOffcet 300
 #>
 Function Convert-ToCET
 {
@@ -54,12 +54,17 @@ Function Convert-ToCET
     $CETeDate = Get-Date $CETEnd -Format "dd-MM-yyyy"
     $CETeTime = Get-Date $CETEnd -Format "HH:mm"
 
+    ### Calculate Duration ###
+
+    $duration = $($CETEnd - $CETStart).totalminutes
+
     ### Add member to the object ###
 
     Add-Member -InputObject $CETData -MemberType NoteProperty -Name CETStartDate -Value $CETsDate
     Add-Member -InputObject $CETData -MemberType NoteProperty -Name CETStartTime -Value $CETsTime
     Add-Member -InputObject $CETData -MemberType NoteProperty -Name CETEndDate -Value $CETeDate
     Add-Member -InputObject $CETData -MemberType NoteProperty -Name CETEndTime -Value $CETeTime
+    Add-Member -InputObject $CETData -MemberType NoteProperty -Name Duration -Value $duration
 
     Return $CETData
 }
